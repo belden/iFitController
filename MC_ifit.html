@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<script language="javascript" type="text/javascript" src='./js/jquery-2.0.3.min.js'></script>
+<script language="javascript" type="text/javascript" src='./js/d3.v3.min.js'></script>
+<script language="javascript" type="text/javascript" src='./js/sprintf.js'></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.iFitSlider.js"></script>
+<script language="javascript" type="text/javascript" src="./js/MC_ifit.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./ifit.css">
+
+
+</script>
+</head>
+
+<body>
+
+  <center>
+    <br><br>
+    <table>
+     <tr>
+      <td valign="top">
+        <table border="0" width="100%">
+        <tr>
+          <td width="50%" valign="center" align="center">
+            <input type="image" id="connect" src="./images/connect.png" width="42" height="42" alt="Connect" /><br><font size=-2>Connect</font>
+         </td>
+         <td width="50%" valign="center" align="center">
+           <input type="image" id="disconnect" src="./images/disconnect.png" width="42" height="42" alt="Disconnect" /><br><font size=-2>Disconnect</font>
+         </td>
+        </tr>
+       </table>
+       <br><br>
+
+        <div class="slider-container" id="inclineslider-container" min="-3" max="10"  step="1"  value="0" label="Incline:"      labelunit="%"   stub="incline"     message= "{ \"values\": {\"Incline\":\"%d\" },\"type\":\"set\" }\n"></div><br><br>
+        <div class="slider-container" id="speedslider-container"   min="0"  max="10"  step=".1" value="0" label="Speed:"        labelunit="MPH" stub="speed"       message= "{ \"values\": {\"MPH\":\"%f\" },\"type\":\"set\" }\n"></div><br><br>
+        <div class="slider-container" id="fanslider-container"     min="0"  max="100" step="1"  value="0" label="Fan:"          labelunit="%"   stub="fan"         message= "{ \"values\": {\"Fan Speed\":\"%d\" },\"type\":\"set\" }\n"></div><br><br>
+        <div class="slider-container" id="volumeslider-container"  min="0"  max="100" step="1"  value="0" label="Media Volume:" labelunit="%"   stub="mediavolume" message= "{ \"values\": {\"Media Volume\":\"%d\" },\"type\":\"set\" }\n"></div><br><br>
+
+       <td> 
+         <div id="output"> <textarea id="ConsoleText" rows="40" cols="80" style="color: lightgreen; background-color: black"></textarea> </div>
+       </td>
+      </tr>
+ 
+</body>
+</html>
+
