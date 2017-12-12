@@ -1,0 +1,40 @@
+<html>
+<head>
+
+<title>iFit Remote Command</title>
+<script language="javascript" type="text/javascript" src='./js/jquery-2.0.3.min.js'></script>
+<script language="javascript" type="text/javascript" src='./js/d3.v3.min.js'></script>
+<script language="javascript" type="text/javascript" src='./js/sprintf.js'></script>
+<script language="javascript" type="text/javascript" src='./js/ifit.js'></script>
+<link rel="stylesheet" type="text/css" href="./ifit.css">
+
+<meta charset="utf-8">
+
+<body>
+  <center>
+    <br><br>
+    <table>
+     <tr>
+      <td valign="top">
+        <table border="0" width="100%">
+        <tr>
+          <td width="50%" valign="center" align="center">
+            <input type="image" id="connect" src="./images/connect.png" width="42" height="42" alt="Connect" /><br><font size=-2>Connect</font>
+         </td>
+         <td width="50%" valign="center" align="center">
+           <input type="image" id="disconnect" src="./images/disconnect.png" width="42" height="42" alt="Disconnect" /><br><font size=-2>Disconnect</font>
+         </td>
+        </tr>
+       </table>
+       <br><br>
+       <div id="slidecontainer"><input type="range" min="-3" max="12" value="0" class="slider" id="InclineSlider"></div> Incline: <span id="inclineLabel" style="font-weight:bold;color:red"></span>% <br><br>
+       <div id="slidecontainer"><input type="range" min="0" max="12" value="0" step="0.1" class="slider" id="SpeedSlider"></div> Speed: <span id="speedLabel" style="font-weight:bold;color:red"></span> MPH <br><br>
+       <div id="slidecontainer"><input type="range" min="0" max="100" value="0" step="20" class="slider" id="FanSlider"></div> Fan: <span id="fanLabel" style="font-weight:bold;color:red"></span>% </td>
+       <td> 
+         <div id="output"> <textarea id="ConsoleText" rows="40" cols="80" style="color: lightgreen; background-color: black"></textarea> </div>
+       </td>
+      </tr>
+     </table>
+   </center>
+</body>
+</html>
