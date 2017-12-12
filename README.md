@@ -27,6 +27,7 @@ or pop it on a webserver that can see your treadmill...
 ## Authors
 
 * **James Cuff** 
+* **Michele Clamp** 
 
 
 ## Acknowledgments
