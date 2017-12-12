@@ -1,5 +1,5 @@
 var treadmill = "10.0.1.6";
-var test      = true;
+var test      = false;
 var websocket;
 
 function scroller(){
@@ -134,7 +134,7 @@ $(function() {
 	    scroller();
 
         } else {
-	    $('#ConsoleText').append("LIVE MODE\n");
+	    $('#ConsoleText').append("LIVE MODE\n" + thisMessage);
             websocket.send(thisMessage);
 	    scroller();
 	}

@@ -50,6 +50,8 @@
 
       this.options         = options;
 
+      console.log(this.message);
+
       this.init = function() {
 
 	  var str = "<input type='range'" + 
