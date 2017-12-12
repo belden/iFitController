@@ -38,8 +38,9 @@ $(function() {
       parent     = $(this).parents()[0];                       // Get the parent element to the slider
       parentdata = $(parent).data('slider');                   // Get the data from the parent element
 
-      message    = sprintf(parentdata.message,this.value);     // Format the message to send to the web socket
+      message    = sprintf(parentdata.message,this.value) + "\n";     // Format the message to send to the web socket
 
+	$('#ConsoleText').append("MESSAGE " + message + "\n");
       $('#ConsoleText').append("SETTING " + parentdata.stub + " to " + this.value + "\n"); scroller();
 	scroller();
 
