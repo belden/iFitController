@@ -1,16 +1,20 @@
 <html>
-<head>
 
-<title>iFit Remote Command</title>
+<head>
 <script language="javascript" type="text/javascript" src='./js/jquery-2.0.3.min.js'></script>
 <script language="javascript" type="text/javascript" src='./js/d3.v3.min.js'></script>
 <script language="javascript" type="text/javascript" src='./js/sprintf.js'></script>
-<script language="javascript" type="text/javascript" src='./js/ifit.js'></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.iFitSlider.js"></script>
+<script language="javascript" type="text/javascript" src="./js/ifit.js"></script>
+
 <link rel="stylesheet" type="text/css" href="./ifit.css">
 
-<meta charset="utf-8">
+
+</script>
+</head>
 
 <body>
+
   <center>
     <br><br>
     <table>
@@ -27,14 +31,28 @@
         </tr>
        </table>
        <br><br>
-       <div id="slidecontainer"><input type="range" min="-3" max="12" value="0" class="slider" id="InclineSlider"></div> Incline: <span id="inclineLabel" style="font-weight:bold;color:red"></span>% <br><br>
-       <div id="slidecontainer"><input type="range" min="0" max="12" value="0" step="0.1" class="slider" id="SpeedSlider"></div> Speed: <span id="speedLabel" style="font-weight:bold;color:red"></span> MPH <br><br>
-       <div id="slidecontainer"><input type="range" min="0" max="100" value="0" step="20" class="slider" id="FanSlider"></div> Fan: <span id="fanLabel" style="font-weight:bold;color:red"></span>% </td>
+
+        <div class="slider-container" id="inclineslider-container" min="-3" max="10"  
+               step="0.5"  value="0" label="Incline:"      labelunit="%"   stub="incline"     
+               message= '{ "values": {"Incline":"%f" },"type":"set" }'></div>
+        <br><br>
+        <div class="slider-container" id="speedslider-container"   min="0"  max="10"  
+               step="0.1" value="0" label="Speed:"        labelunit="MPH" stub="speed"       
+               message= '{ "values": {"MPH":"%f" },"type":"set" }'></div>
+        <br><br>
+        <div class="slider-container" id="fanslider-container"     min="0"  max="100" 
+               step="20"  value="0" label="Fan:"          labelunit="%"   stub="fan"         
+               message= '{ "values": {"Fan Speed":"%d" },"type":"set" }'></div>
+        <br><br>
+        <div class="slider-container" id="volumeslider-container"  min="0"  max="10" 
+	       step="1"  value="0" label="Media Volume:" labelunit=""   stub="mediavolume" 
+               message= '{ "values": {"Volume":"%d" },"type":"set" }'></div>
+        <br><br>
        <td> 
          <div id="output"> <textarea id="ConsoleText" rows="40" cols="80" style="color: lightgreen; background-color: black"></textarea> </div>
        </td>
       </tr>
-     </table>
-   </center>
+ 
 </body>
 </html>
+
