@@ -40,7 +40,7 @@ $(function() {
 
       message    = sprintf(parentdata.message,this.value) + "\n";     // Format the message to send to the web socket
 
-	$('#ConsoleText').append("MESSAGE " + message + "\n");
+      //$('#ConsoleText').append("MESSAGE " + message + "\n");
       $('#ConsoleText').append("SETTING " + parentdata.stub + " to " + this.value + "\n"); scroller();
 	scroller();
 
@@ -135,7 +135,7 @@ $(function() {
 	    scroller();
 
         } else {
-	    $('#ConsoleText').append("LIVE MODE\n" + thisMessage);
+	   // $('#ConsoleText').append("LIVE MODE\n" + thisMessage);
             websocket.send(thisMessage);
 	    scroller();
 	}

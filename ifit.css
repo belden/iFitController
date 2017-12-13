@@ -1,6 +1,6 @@
 body {
    font-family:"Courier", Times, serif;
-   font-size: 12px;
+   font-size: 10px;
 }
 
 textarea  {
@@ -12,7 +12,7 @@ textarea  {
 }
 
 #slidecontainer {
-    width: 200px; /* Width of the outside container */
+    width: 50px; /* Width of the outside container */
 }
 
 /* The slider itself */
@@ -44,8 +44,8 @@ textarea  {
 }
 
 .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
+    width: 35px; /* Set a specific slider handle width */
+    height: 35px; /* Slider handle height */
     background: #4CAF50; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
@@ -54,7 +54,7 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
     border-spacing: 5px;
-    padding: 15px;
+    padding: 10px;
 }
 
 
