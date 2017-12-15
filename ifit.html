@@ -2,18 +2,40 @@
 
 <head>
 <script language="javascript" type="text/javascript" src='./js/jquery-2.0.3.min.js'></script>
-<script language="javascript" type="text/javascript" src='./js/d3.v3.min.js'></script>
 <script language="javascript" type="text/javascript" src='./js/sprintf.js'></script>
 <script language="javascript" type="text/javascript" src="./js/jquery.iFitSlider.js"></script>
 <script language="javascript" type="text/javascript" src="./js/ifit.js"></script>
 
-<link rel="stylesheet" type="text/css" href="./ifit.css">
+<script language="javascript" type="text/javascript" src="./js/d3.js"></script>
+<script language="javascript" type="text/javascript" src="./js/epoch.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="./css/epoch.css">
+
+<link rel="stylesheet" type="text/css" href="./css/ifit.css">
+
 </head>
 
 <body>
-  <center>
     <br>
-    <table width="100%">
+
+<center>   
+
+<table width="900px">
+     <tr>
+      <td valign="top" width="50%">
+
+   <div id="myheartChart" style="height: 250px; width: 400px"></div>
+<br>Heart Rate (bpm)
+      </td>
+      <td valign="top" width="50%">
+   <div id="myspeedinclineChart" style="height: 250px; width: 400px"></div> 
+<br>(Speed MPH, Incline %)
+      </td>
+   </tr>
+   </table>
+<br>
+    <table width="800px">
      <tr>
       <td valign="top" width="75%">
         <table border="1" width="100%">

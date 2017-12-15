@@ -11,6 +11,7 @@ textarea  {
    overflow-x: scroll;
 }
 
+
 #slidecontainer {
     width: 50px; /* Width of the outside container */
 }
@@ -56,5 +57,20 @@ table, th, td {
     border-spacing: 5px;
     padding: 10px;
 }
+
+#myspeedinclineChart .incline .line {
+  stroke: green;
+}
+
+
+#myspeedinclineChart .mph .line {
+  stroke: blue;
+}
+
+
+#myheartChart .heart .line {
+  stroke: red;
+}
+
 
 

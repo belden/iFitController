@@ -11,6 +11,8 @@ function scroller(){
 
 $(function() {
 
+    var csvOut = "";
+
     $('#ConsoleText').append("iFit Treadmill Websockets Command (version 1.2_js)\n");
     $('#ConsoleText').append("jquery, ds3, sprintf\n\n");
     $('#ConsoleText').append("Initializing...\n\n");
@@ -41,7 +43,7 @@ $(function() {
       message    = sprintf(parentdata.message,this.value) + "\n";     // Format the message to send to the web socket
 
       //$('#ConsoleText').append("MESSAGE " + message + "\n");
-      $('#ConsoleText').append("SETTING " + parentdata.stub + " to " + this.value + "\n"); scroller();
+      //$('#ConsoleText').append("SETTING " + parentdata.stub + " to " + this.value + "\n"); scroller();
 	scroller();
 
 	if (websocket) {
@@ -90,42 +92,185 @@ $(function() {
     $('#ConsoleText').append("\n--------------------------------------------\n");
     $('#ConsoleText').append("\"YOUR DEVICE IS DISCONNECT :-)\"\n");
     $('#ConsoleText').append("--------------------------------------------\n");
+
+    $('#ConsoleText').append(csvOut);
+
     scroller();
   }
 
   var counter = 0;
+  var lastsecond = 0;
 
-  function onMessage(evt) {
+  var mph = 0;
+  var incline = 0;
+  var heart = 90;
+  var outmessage = "";
+
+
+var speedinclineChartData = [
+                    {label: "mph", values: []},
+                    {label: "incline", values: []},
+                ];
+
+var heartChartData = [ {label: "heart", values: []} ];
+
+
+var speedinclineChartInstance = $('#myspeedinclineChart').epoch({
+		type: 'time.line',
+		historySize: 200,
+ 	        ticks: { time: 50, right: 5, left: 10 },
+		windowSize: 200,
+		axes: ['left', 'bottom'],
+		data: speedinclineChartData });
+
+var heartChartInstance = $('#myheartChart').epoch({
+                type: 'time.line',
+                historySize: 200,
+                ticks: { time: 50, right: 5, left: 10 },
+                windowSize: 200,
+                axes: ['left', 'bottom'],
+                data: heartChartData });
+
+          speedinclineChartInstance.redraw();
+          heartChartInstance.redraw();
+
+
+var lastseconds = 0;
+var timehash = {};
+
+function onMessage(evt) {
+
+// GRAPH  test data
+/* heart=Math.floor(Math.random()*200); 
+mph=Math.floor(Math.random()*10); 
+incline=Math.floor(Math.random()*10); 
+var d = new Date();
+var seconds = Math.round(d.getTime()/1000);
+    speedinclineChartData[0].values.push({time: seconds, y: mph});
+    speedinclineChartData[1].values.push({time: seconds, y: incline});
+    heartChartData[0].values.push({time: seconds, y: heart});
+                
+    speedinclineChartInstance.push ([
+         {time: seconds, y: mph},
+         {time: seconds, y: incline},
+    ]);
+
+    heartChartInstance.push ([
+          {time: seconds, y: heart}
+    ]);
+*/
+
+
+// GRAPH test
 
       // first packet is magic - store it, don't update graph
       if (counter == 0) {
           var parsed = JSON.parse(evt.data, (key, value) => {
               if (key != "values" && key != ""){
-                  $('#ConsoleText').append(sprintf("%-28s %s\n",key, value));
+                  $('#ConsoleText').append(sprintf("%-28s %s\n", key, value));
               }
               scroller();
           });
           counter++;
           $('#ConsoleText').append("\n--------------------------------------------\n\n");
+          $('#ConsoleText').append("\nTime, MPH, Incline, Heartrate, Event\n");
+          csvOut = ("\nTime, MPH, Incline, Heartrate, Event\n");
           scroller();
 
       } else {
-          if (evt.data != '{ }') {
-              var parsed = JSON.parse(evt.data, (key, value) => {
-		  now = new Date()
 
-		  // check not blank and toss "totals" from inbound stream
-		  if (key != "values" && key != "" && key != "Total Time" && key != "Total Miles" && key != "Kilometers"){
-                      $('#ConsoleText').append(sprintf("%-38s %s\n",key, value));
+//new data.
+	
+          if (evt.data != '{ }') {
+              var d = new Date();
+              var seconds = Math.round(d.getTime()/1000);
+
+	      var donethis=0;
+	      var thisevent = "";
+
+              var parsed = JSON.parse(evt.data, (key, value) => {
+
+              // is not key press data or workout type...  
+              if (!(seconds in timehash)) {
+              
+	        if (key == "Chest Pulse"){ 
+			heart = value;
+                        heartChartData[0].values.push({time: seconds, y: heart});
+			speedinclineChartData[0].values.push({time: seconds, y: mph});
+                        speedinclineChartData[1].values.push({time: seconds, y: incline});
+		        thisevent = "Chest";	
+		
+                        heartChartInstance.push ([ 
+                                {time: seconds, y: heart}
+                        ]);
+                        speedinclineChartInstance.push ([
+                                {time: seconds, y: mph},
+                                {time: seconds, y: incline}
+                        ]);
+
+                        $('#ConsoleText').append(outmessage = sprintf("%s, %s, %s, %s, %s\n", seconds, thisevent, mph, incline, heart ));
+                        csvOut = csvOut + sprintf("%s, %s, %s, %s, %s\n", seconds, mph, incline, heart,thisevent );
+	         };
+
+
+                      if (key == "MPH"){ 
+			mph = value;
+			heartChartData[0].values.push({time: seconds, y: heart});
+                        speedinclineChartData[0].values.push({time: seconds, y: mph});
+                        speedinclineChartData[1].values.push({time: seconds, y: incline});
+			thisevent = "MPH";
+
+                        heartChartInstance.push ([ 
+                                {time: seconds, y: heart}
+                        ]);
+	                speedinclineChartInstance.push ([
+                                {time: seconds, y: mph},
+                                {time: seconds, y: incline}
+                        ]);
+                        $('#ConsoleText').append(outmessage = sprintf("%s, %s, %s, %s, %s\n", seconds, thisevent, mph, incline, heart ));
+                        csvOut = csvOut + sprintf("%s, %s, %s, %s, %s\n", seconds, mph, incline, heart,thisevent );
+		      };
+
+
+                       if (key == "Actual Incline"){ 
+			incline = value;
+			heartChartData[0].values.push({time: seconds, y: heart});
+                        speedinclineChartData[0].values.push({time: seconds, y: mph});
+                        speedinclineChartData[1].values.push({time: seconds, y: incline});
+			thisevent = "Incline";
+
+		        heartChartInstance.push ([ 
+                                {time: seconds, y: heart}
+                        ]);
+
+			speedinclineChartInstance.push ([
+                                {time: seconds, y: mph},
+                                {time: seconds, y: incline}
+                        ]);
+
+                        $('#ConsoleText').append(sprintf("%s, %s, %s, %s, %s\n", seconds, thisevent, mph, incline, heart ));
+                        csvOut = csvOut + sprintf("%s, %s, %s, %s, %s\n", seconds, mph, incline, heart,thisevent );
+		       }
+
                       scroller();
-		  }
-              });
-          }
-      }  //else
-  } 
+			
+                  } 
+		      else {
+                      //  $('#ConsoleText').append(sprintf("Skipping timepoint %s for key %s\n",seconds,key));
+                      }
+                      timehash[seconds] = 1;		
+		      speedinclineChartInstance.redraw();		     
+		      heartChartInstance.redraw(); 
+                 });
+
+      }  // if evt.data
+
+  } //else
+
+} // function onMessage
 
     function onError(evt) {
-        writeToScreen('ERROR:' + evt.data);
+        // writeToScreen('ERROR:' + evt.data);
     }
 
     function doSend(thisMessage) {
@@ -145,4 +290,4 @@ $(function() {
         $('#output').append(message + '<br />');
     }
     
-});
+}); //jquery
