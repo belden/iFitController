@@ -24,15 +24,12 @@
 <table width="900px">
      <tr>
       <td valign="top" width="50%">
-
-   <div id="myheartChart" style="height: 250px; width: 400px"></div>
-<br>Heart Rate (bpm)
+   <div id="myheartChart" style="height: 250px; width: 400px"></div><font size=-1>Heart Rate (bpm)</font>
       </td>
-      <td valign="top" width="50%">
-   <div id="myspeedinclineChart" style="height: 250px; width: 400px"></div> 
-<br>(Speed MPH, Incline %)
+      <td valign="top" width="50%"> 
+   <div id="myspeedinclineChart" style="height: 250px; width: 400px"></div><font size=-1>Speed MPH, Incline %</font>
       </td>
-   </tr>
+      </tr>
    </table>
 <br>
     <table width="800px">
@@ -42,38 +39,35 @@
         <tr> 
           <td width="50%" valign="center" align="center">
             <input type="image" id="connect" src="./images/connect.png" width="42" height="42" alt="Connect" />
-            <br><font size=-2>Connect</font>
+            <br><font size=-1>Connect</font>
          </td>
          <td width="50%" valign="center" align="center">
            <input type="image" id="disconnect" src="./images/disconnect.png" width="42" height="42" alt="Disconnect" />
-            <br><font size=-2>Disconnect</font>
+            <br><font size=-1>Disconnect</font>
          </td>
         </tr>
-       </table>
-       <br><br>
+       </table><br>
         <div class="slider-container" id="inclineslider-container" min="-3" max="10"  
                step="0.5"  value="0" label="Incline:" labelunit="%"  stub="incline"     
                message= '{ "values": {"Incline":"%f" },"type":"set" }'></div>
-        <br><br>
         <div class="slider-container" id="speedslider-container"   min="0"  max="10"  
                step="0.1" value="0" label="Speed:" labelunit="MPH" stub="speed"       
                message= '{ "values": {"MPH":"%f" },"type":"set" }'></div>
-        <br><br>
         <div class="slider-container" id="fanslider-container"     min="0"  max="100" 
                step="20"  value="0" label="Fan:" labelunit="%"  stub="fan"         
                message= '{ "values": {"Fan Speed":"%d" },"type":"set" }'></div>
-        <br><br>
         <div class="slider-container" id="volumeslider-container"  min="0"  max="10" 
 	       step="1"  value="0" label="Media Volume:" labelunit=""  stub="mediavolume" 
                message= '{ "values": {"Volume":"%d" },"type":"set" }'></div>
-        <br><br>
         <div class="slider-container" id="consoleslider-container"  min="0"  max="14"
                step="1"  value="0" label="Console Height:" labelunit=""  stub="consoleheight"
                message= '{ "values": {"Console Lift":"%d" },"type":"set" }'></div>
-        <br><br>
        </td>
        <td width="25%" valign="top"> 
-         <div id="output"> <textarea id="ConsoleText" rows="48" cols="80" style="color: lightgreen; background-color: black"></textarea> </div>
+         <div id="output"> <textarea id="ConsoleText" rows="30" cols="80" style="color: lightgreen; background-color: black"></textarea> </div>
+<br>
+<div align="center"><input type="button" id="dwn-btn" style="font-size : 40px; width: 80%; height: 120px;" value="Download Run Data"/></div>
+
        </td>
       </tr>
    </table>

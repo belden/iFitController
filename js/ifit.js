@@ -9,6 +9,17 @@ function scroller(){
    );
 }
 
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+
 $(function() {
 
     var csvOut = "";
@@ -45,9 +56,10 @@ $(function() {
       //$('#ConsoleText').append("MESSAGE " + message + "\n");
       //$('#ConsoleText').append("SETTING " + parentdata.stub + " to " + this.value + "\n"); scroller();
 	scroller();
-
 	if (websocket) {
-	    doSend(message);
+            if(websocket.readyState === websocket.OPEN){
+	     doSend(message);
+            }
 	} else {
 	    $("#ConsoleText").append("Not connected - won't send\n");
 	    scroller();
@@ -62,12 +74,15 @@ $(function() {
     websocket.onopen = function (evt) {
       onOpen(evt)
     };
+
     websocket.onclose = function (evt) {
       onClose(evt)
     };
+
     websocket.onmessage = function (evt) {
       onMessage(evt)
     }; 
+
     websocket.onerror = function (evt) {
       onError(evt)
     };
@@ -97,6 +112,19 @@ $(function() {
 
     scroller();
   }
+
+
+// Start file download.
+document.getElementById("dwn-btn").addEventListener("click", function(){
+    // Generate download of csv.txt file with some content
+
+var currentdate = new Date().toLocaleString(); 
+
+
+    var filename = "iFitRunData_" + currentdate + ".csv";
+    download(filename, csvOut);
+}, false);
+
 
   var counter = 0;
   var lastsecond = 0;
@@ -174,7 +202,7 @@ var seconds = Math.round(d.getTime()/1000);
           counter++;
           $('#ConsoleText').append("\n--------------------------------------------\n\n");
           $('#ConsoleText').append("\nTime, MPH, Incline, Heartrate, Event\n");
-          csvOut = ("\nTime, MPH, Incline, Heartrate, Event\n");
+          csvOut = ("Time, MPH, Incline, Heartrate, Event\n");
           scroller();
 
       } else {
@@ -208,8 +236,8 @@ var seconds = Math.round(d.getTime()/1000);
                                 {time: seconds, y: incline}
                         ]);
 
-                        $('#ConsoleText').append(outmessage = sprintf("%s, %s, %s, %s, %s\n", seconds, thisevent, mph, incline, heart ));
-                        csvOut = csvOut + sprintf("%s, %s, %s, %s, %s\n", seconds, mph, incline, heart,thisevent );
+                        $('#ConsoleText').append(outmessage = sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), thisevent, mph, incline, heart ));
+                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), mph, incline, heart,thisevent );
 	         };
 
 
@@ -227,8 +255,8 @@ var seconds = Math.round(d.getTime()/1000);
                                 {time: seconds, y: mph},
                                 {time: seconds, y: incline}
                         ]);
-                        $('#ConsoleText').append(outmessage = sprintf("%s, %s, %s, %s, %s\n", seconds, thisevent, mph, incline, heart ));
-                        csvOut = csvOut + sprintf("%s, %s, %s, %s, %s\n", seconds, mph, incline, heart,thisevent );
+	                $('#ConsoleText').append(outmessage = sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), thisevent, mph, incline, heart ));
+                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), mph, incline, heart,thisevent );
 		      };
 
 
@@ -247,9 +275,8 @@ var seconds = Math.round(d.getTime()/1000);
                                 {time: seconds, y: mph},
                                 {time: seconds, y: incline}
                         ]);
-
-                        $('#ConsoleText').append(sprintf("%s, %s, %s, %s, %s\n", seconds, thisevent, mph, incline, heart ));
-                        csvOut = csvOut + sprintf("%s, %s, %s, %s, %s\n", seconds, mph, incline, heart,thisevent );
+                        $('#ConsoleText').append(outmessage = sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), thisevent, mph, incline, heart ));
+                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), mph, incline, heart,thisevent );
 		       }
 
                       scroller();
