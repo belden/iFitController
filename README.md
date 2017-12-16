@@ -5,7 +5,7 @@ Simple websockets client proof of concept to control NordicTrack iFit enabled tr
 
 Can capture data from the socket and send events during exercise and allow for storing and graphing.  No root access to android treadmill controller needed or was required, standard port 80 on version 3.4.0324.0.0.5.2.3 of firmware is open to IP ANY/ANY. This may change, so you may want to freeze the version on your treadmill. 
 
-No reverse engineering was required, we simply used the [repair tool access from iFit](https://ifit.zendesk.com/hc/en-us/articles/201800660-Reinstall-iFit-Software-Repair-Tool), then exit to desktop as they explain then start Astro.  From there /var/log/messages contained all the connections to the uthttpd process that controls the treadmill functions.  
+No reverse engineering was required, we simply used the [repair tool access from iFit](https://ifit.zendesk.com/hc/en-us/articles/201800660-Reinstall-iFit-Software-Repair-Tool), then exit to desktop as they explain if you need to restore the firmware.  After that we started the file browser Astro.  From there /var/log/messages contained all the logged connections to the uthttpd process that controls the treadmill functions.  
 
 Replaying these events via a remote websocket resulted in speed, incline and other changes.  Turns out they are simple JSON formatted strings such as:
 
@@ -25,9 +25,11 @@ Replaying these events via a remote websocket resulted in speed, incline and oth
 { "values": {"Fan Speed":"50" },"type":"set" }
 ````
 
-Sliders have been built to replicate these.  In addition while there is an active websockets connectio, events from the machine are relayed to all hosts connected, we keyed off the chest heart rate sensor and capture speed and incline into a CSV format file that can be downloaded after your session for use in Excel etc.
+Sliders have been built to replicate these commands.  In addition while there is an active websockets connection, events from the machine are relayed to any websocket hosts connected. We keyed off the chest heart rate sensor and also capture speed and incline into a CSV format in the javascript session.  That file that can be downloaded after your session is complete for later use in Excel etc (see below).
 
-Here you can see Elmo enjoying his ride.  We hope this software is useful for others.
+Here you can see Elmo enjoying his ride!  
+
+We hope this software is useful for others, if you have ideas for extension please feel free to submit a pull request, there are some ideas in the TODO section below.
 
 <p align="center">
 <img src="images/ElmoOnTheMove.gif?raw=true" alt="Elmo" />
@@ -76,7 +78,9 @@ Kudos and thanks to each of the following that were used to build this app:
 ## TODO
 
 * Add "workouts" to be able to replay previous workouts, and/or challenges e.g. rolling hills, intervals etc.
-* Alexa style voice commands could be fun.  e.g. "Alexa, set treadmill to five miles per hour"
+* Alexa style voice commands could be fun.  e.g. "Alexa, set treadmill to five miles per hour".
+* Nice iPad/tablet interface app or html that can be used while you are on the treadmill.
+* Comparison of previous runs/workouts - delta of current heartrate, like the concept of a "shadow" run.
 
 ## Acknowledgments
 
