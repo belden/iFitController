@@ -25,7 +25,7 @@ Replaying these events via a remote websocket resulted in speed, incline and oth
 { "values": {"Fan Speed":"50" },"type":"set" }
 ````
 
-Sliders have been built to replicate these commands.  In addition while there is an active websockets connection, events from the machine are relayed to any websocket hosts connected. We keyed off the chest heart rate sensor and also capture speed and incline into a CSV format in the javascript session.  That file that can be downloaded after your session is complete for later use in Excel etc (see below).
+Sliders have been built to replicate these commands.  In addition while there is an active websockets connection, events from the machine are relayed to any websocket hosts connected. We keyed off the chest heart rate sensor and also capture speed and incline into a realtime scrolling graph for heartrate and speed and incline, and also a downloadable CSV format in the javascript session.  That file that can be downloaded after your session is complete for later use in Excel etc (see below).
 
 Here you can see Elmo enjoying his ride!  
 
@@ -81,6 +81,8 @@ Kudos and thanks to each of the following that were used to build this app:
 * Alexa style voice commands could be fun.  e.g. "Alexa, set treadmill to five miles per hour".
 * Nice iPad/tablet interface app or html that can be used while you are on the treadmill.
 * Comparison of previous runs/workouts - delta of current heartrate, like the concept of a "shadow" run.
+* Accessibility issues - we could [help with this question here](https://www.applevis.com/forum/hardware-accessories/are-there-any-treadmills-accessible-companion-ios-apps)
+* Export to other formats, TCX, Strava etc.
 
 ## Acknowledgments
 
