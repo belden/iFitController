@@ -34,7 +34,9 @@ There's a Download Run Data button that will dump the events to a csv file so yo
 
 * Hat tip to Ventz! 
 
+### Examples:
 
 
 ![Alt text](images/screenie.png?raw=true "Screenie")
+![Alt text](images/screenieexcel.png?raw=true "Excel Screenie")
 

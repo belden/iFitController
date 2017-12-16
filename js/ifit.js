@@ -131,7 +131,7 @@ var currentdate = new Date().toLocaleString();
 
   var mph = 0;
   var incline = 0;
-  var heart = 90;
+  var heart = 0;
   var outmessage = "";
 
 
@@ -146,7 +146,8 @@ var heartChartData = [ {label: "heart", values: []} ];
 var speedinclineChartInstance = $('#myspeedinclineChart').epoch({
 		type: 'time.line',
 		historySize: 200,
- 	        ticks: { time: 50, right: 5, left: 10 },
+		range: [-3,12],
+ 	        ticks: { time: 100, right: 5, left: 10 },
 		windowSize: 200,
 		axes: ['left', 'bottom'],
 		data: speedinclineChartData });
@@ -154,7 +155,8 @@ var speedinclineChartInstance = $('#myspeedinclineChart').epoch({
 var heartChartInstance = $('#myheartChart').epoch({
                 type: 'time.line',
                 historySize: 200,
-                ticks: { time: 50, right: 5, left: 10 },
+		range: [60,200],
+                ticks: { time: 100, right: 5, left: 10 },
                 windowSize: 200,
                 axes: ['left', 'bottom'],
                 data: heartChartData });
@@ -187,8 +189,6 @@ var seconds = Math.round(d.getTime()/1000);
           {time: seconds, y: heart}
     ]);
 */
-
-
 // GRAPH test
 
       // first packet is magic - store it, don't update graph
@@ -211,7 +211,7 @@ var seconds = Math.round(d.getTime()/1000);
 	
           if (evt.data != '{ }') {
               var d = new Date();
-              var seconds = Math.round(d.getTime()/1000);
+              var seconds = Math.round(d.getTime());
 
 	      var donethis=0;
 	      var thisevent = "";
@@ -222,6 +222,7 @@ var seconds = Math.round(d.getTime()/1000);
               if (!(seconds in timehash)) {
               
 	        if (key == "Chest Pulse"){ 
+		     if (value != 0){
 			heart = value;
                         heartChartData[0].values.push({time: seconds, y: heart});
 			speedinclineChartData[0].values.push({time: seconds, y: mph});
@@ -229,15 +230,16 @@ var seconds = Math.round(d.getTime()/1000);
 		        thisevent = "Chest";	
 		
                         heartChartInstance.push ([ 
-                                {time: seconds, y: heart}
+                                {time: (seconds/1000), y: heart}
                         ]);
                         speedinclineChartInstance.push ([
-                                {time: seconds, y: mph},
-                                {time: seconds, y: incline}
+                                {time: (seconds/1000), y: mph},
+                                {time: (seconds/1000), y: incline}
                         ]);
 
                         $('#ConsoleText').append(outmessage = sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), thisevent, mph, incline, heart ));
-                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), mph, incline, heart,thisevent );
+                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds), mph, incline, heart,thisevent );
+		      }
 	         };
 
 
@@ -249,14 +251,14 @@ var seconds = Math.round(d.getTime()/1000);
 			thisevent = "MPH";
 
                         heartChartInstance.push ([ 
-                                {time: seconds, y: heart}
+                                {time: (seconds/1000), y: heart}
                         ]);
 	                speedinclineChartInstance.push ([
-                                {time: seconds, y: mph},
-                                {time: seconds, y: incline}
+                                {time: (seconds/1000), y: mph},
+                                {time: (seconds/1000), y: incline}
                         ]);
 	                $('#ConsoleText').append(outmessage = sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), thisevent, mph, incline, heart ));
-                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), mph, incline, heart,thisevent );
+                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds), mph, incline, heart,thisevent );
 		      };
 
 
@@ -268,15 +270,15 @@ var seconds = Math.round(d.getTime()/1000);
 			thisevent = "Incline";
 
 		        heartChartInstance.push ([ 
-                                {time: seconds, y: heart}
+                                {time: (seconds/1000), y: heart}
                         ]);
 
 			speedinclineChartInstance.push ([
-                                {time: seconds, y: mph},
-                                {time: seconds, y: incline}
+                                {time: (seconds/1000), y: mph},
+                                {time: (seconds/1000), y: incline}
                         ]);
                         $('#ConsoleText').append(outmessage = sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), thisevent, mph, incline, heart ));
-                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds*1000), mph, incline, heart,thisevent );
+                        csvOut = csvOut + sprintf("\"%s\", %s, %s, %s, %s\n", Date(seconds), mph, incline, heart,thisevent );
 		       }
 
                       scroller();
