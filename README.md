@@ -63,9 +63,9 @@ Kudos and thanks to each of the following that were used to build this app:
 * [sprintf](https://github.com/alexei/sprintf.js)
 * [epoch](http://epochjs.github.io/epoch/)
 
-**NOTE:  All trademarks are of their respective owners.  
+**NOTE:  All trademarks are of their respective owners.**  
 
-This application is in NO WAY affiliated or endorsed with or by any product!**
+**This application is in NO WAY affiliated or endorsed with or by any product!**
 
 ## Authors
 
