@@ -3,7 +3,9 @@
 
 Simple websockets client proof of concept
 
-<p align="center">![Alt text](images/ElmoOnTheMove.gif?raw=true "Elmo")</p>
+<p align="center">
+<img src="images/ElmoOnTheMove.gif?raw=true" alt="Elmo" />
+</p>
 
 ### Installing
 
