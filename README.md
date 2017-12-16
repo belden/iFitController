@@ -25,6 +25,8 @@ Replaying these events via a remote websocket resulted in speed, incline and oth
 
 Sliders have been built to replicate these.  In addition while there is an active websockets connectio, events from the machine are relayed to all hosts connected, we keyed off the chest heart rate sensor and capture speed and incline into a CSV format file that can be downloaded after your session for use in Excel etc.
 
+Here you can see Elmo enjoying his ride.  We hope this software is useful for others.
+
 <p align="center">
 <img src="images/ElmoOnTheMove.gif?raw=true" alt="Elmo" />
 </p>
@@ -51,27 +53,33 @@ There's a Download Run Data button that will dump the events to a csv file so yo
 
 ## Packages used
 
-Kudos and thanks to each of the following that are used in this app:
+Kudos and thanks to each of the following that were used to build this app:
 
 * [repair tool access from iFit](https://ifit.zendesk.com/hc/en-us/articles/201800660-Reinstall-iFit-Software-Repair-Tool)
 * [jQuery](http://jquery.com/download/)
 * [d3js](https://d3js.org)
 * [epoch](http://epochjs.github.io/epoch/)
 
-**NOTE:  All trademarks are of their respective owners.  This application is in NO WAY affiliated or endorsed with or by any product!**
+**NOTE:  All trademarks are of their respective owners.  
+
+This application is in NO WAY affiliated or endorsed with or by any product!**
 
 ## Authors
 
-* **James Cuff** 
+* **[James Cuff](http://twitter.com/jamesdotcuff)** 
 * **Michele Clamp** 
 
+
+## TODO
+
+* Add "workouts" to be able to replay previous workouts, and/or challenges e.g. rolling hills, intervals etc.
+* Alexa style voice commands could be fun.  e.g. "Alexa, set treadmill to five miles per hour"
 
 ## Acknowledgments
 
 * Hat tip to Ventz! 
 
 ### Examples:
-
 
 ![Alt text](images/screenie.png?raw=true "Screenie")
 ![Alt text](images/screenieexcel.png?raw=true "Excel Screenie")
