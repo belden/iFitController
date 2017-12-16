@@ -24,7 +24,7 @@ or pop it on a webserver that can see your treadmill...  you will want to passwo
 
 There's a Download Run Data button that will dump the events to a csv file so you can open in Excel etc. to look at your run.  Currently keyed off chest heart rate events and any other changes to elevation and or speed.
 
-For a demo see: [Elmo On The Move Movie](ElmoOnTheMove.mov)
+![Alt text](images/ElmoOnTheMove.gif?raw=true "Elmo")
 
 
 ## Authors
