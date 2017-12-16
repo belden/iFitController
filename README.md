@@ -1,7 +1,9 @@
 
 # iFitController
 
-Simple websockets client proof of concept to control NordicTrack iFit enabled treadmills.  Can also capture data from the socket during exercise and allow for storing and graphing.  No root access to treadmill needed, standard port 80 on version 3.4.0324.0.0.5.2.3 of firmware is open to IP ANY/ANY. This may change, so you may want to freeze your version on your treadmill. 
+Simple websockets client proof of concept to control NordicTrack iFit enabled treadmills.  
+
+Can capture data from the socket and send events during exercise and allow for storing and graphing.  No root access to android treadmill controller needed or was required, standard port 80 on version 3.4.0324.0.0.5.2.3 of firmware is open to IP ANY/ANY. This may change, so you may want to freeze the version on your treadmill. 
 
 No reverse engineering was required, we simply used the [repair tool access from iFit](https://ifit.zendesk.com/hc/en-us/articles/201800660-Reinstall-iFit-Software-Repair-Tool), then exit to desktop as they explain then start Astro.  From there /var/log/messages contained all the connections to the uthttpd process that controls the treadmill functions.  
 
