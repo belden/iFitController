@@ -33,7 +33,7 @@ Here you can see Elmo enjoying his ride.  We hope this software is useful for ot
 <img src="images/ElmoOnTheMove.gif?raw=true" alt="Elmo" />
 </p>
 
-### Installing
+## Installing
 
 Set Treadmill address in ifit.js
 
