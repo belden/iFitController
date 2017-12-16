@@ -60,6 +60,7 @@ Kudos and thanks to each of the following that were used to build this app:
 * [repair tool access from iFit](https://ifit.zendesk.com/hc/en-us/articles/201800660-Reinstall-iFit-Software-Repair-Tool)
 * [jQuery](http://jquery.com/download/)
 * [d3js](https://d3js.org)
+* [sprintf](https://github.com/alexei/sprintf.js)
 * [epoch](http://epochjs.github.io/epoch/)
 
 **NOTE:  All trademarks are of their respective owners.  
