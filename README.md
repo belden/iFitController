@@ -88,8 +88,11 @@ Kudos and thanks to each of the following that were used to build this app:
 
 * Hat tip to Ventz! 
 
-### Examples:
+## Example Output:
 
+Realtime graphing and console
 ![Alt text](images/screenie.png?raw=true "Screenie")
+
+Downstream processing by Excel of CSV file
 ![Alt text](images/screenieexcel.png?raw=true "Excel Screenie")
 
