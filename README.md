@@ -70,7 +70,7 @@ Kudos and thanks to each of the following that were used to build this app:
 ## Authors
 
 * **[James Cuff](http://twitter.com/jamesdotcuff)** 
-* **Michele Clamp** 
+* **[Michele Clamp](http://twitter.com/micheleclamp)** 
 
 
 ## TODO
